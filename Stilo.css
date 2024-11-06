@@ -1,0 +1,184 @@
+/*CONFIGURACION DEL CUERPO DEL HTML*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: slider 30s infinite;
+}
+
+@keyframes slider {
+    0% { background-image: url('FONDO.jpg'); }
+    30% { background-image: url('CAMINOS.jpg'); }
+    60% { background-image: url('IZQUIERDA.jpg'); }
+    100% { background-image: url('CENTRO.jpg'); }
+}
+
+
+/*CONFIGURACION DE LA CAJA*/
+#game {
+    max-width: 500px; /*Tamaño maximo de la caja*/
+    margin: 0 auto; /*Margen Automatico*/
+    /*background-color: #0098c2; /*Color de Fondo*/
+    padding: 25px; /*Tamaño de la caja*/
+    border-radius: 10px; /*Borde de la caja*/
+    box-shadow: 0 100px 100px rgba(0,0,0,0.1);
+    animation: ColorChange 5s infinite;
+}
+
+@keyframes ColorChange {
+    0% { background-color: #00abb7; }
+    40% { background-color: #ffb326; }
+    80% { background-color: #5cbafe; }
+    100% { background-color: #00abb7; }
+}
+
+
+/*CONFIGURACION DEL TITULO*/
+h1,h2,h3,h4,h5 {
+    text-align: center; 
+}
+
+
+@keyframes shine {
+    0% { background-position: -200px; }
+    100% { background-position: 200px; }
+}
+
+.shiny-title {
+    font-size: 36px;
+    font-weight: bold;
+    
+    background: linear-gradient(70deg, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200px 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s infinite linear;
+}
+
+
+@keyframes slide-in {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.slide-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    position: relative;
+}
+
+
+/*CONFIGURACION LETRAS DE LA SCENA*/
+#scene {
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/*CONFIGURACON DE LOS BOTONES*/
+/*#options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #680028;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 100px 100px rgba(0,0,0,0.1);
+}
+
+/*COLOR CUANDO PASA EL CURSOR*/
+/*#options button:hover {
+    background-color: #ffffff;
+}
+
+
+/*configuracion del color y movimiento de los botones*/
+@keyframes buttonColorChange {
+    0% { background-color: #007bff; }
+    50% { background-color: #0056b3; }
+    100% { background-color: #007bff; }
+    
+}
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+
+#options button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 50px 50px rgba(0,0,0,0.1);
+    animation: buttonColorChange 5s infinite, heartbeat 1.5s infinite;
+}
+
+/*CONFIGURACION DE LOS PUNTOS*/
+/*animacion de texto*/
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.text {
+    font-size: 24px;
+    color: #1c1c1c;
+    animation: fadeInOut 10s infinite;
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+
+/*CONFIGURACION DE LA IMAGEN DE SCENA*/
+/*CENTRAR IMAGEN*/
+#image-container {
+    text-align: center;
+}
+/*TAMAÑO Y BORDE IMAGEN*/
+#scene-image {
+    max-width: 100%;
+    border-radius: 20% 10% 20% 10%/ 10% 20% 10% 20%;
+    height: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: heartbeat 10s infinite;
+}
+
+/*CONFIGURACION IMAGEN DE FONDO*/
+/* Difuminar la imagen de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Usa la misma imagen de fondo */
+    filter: blur(8px); /* Aplica el efecto de difuminado */
+    z-index: -1; /* Coloca el fondo detrás del contenido */
+}
+
+/* Estilos para el contenido */
+.content {
+    position: relative;
+    z-index: 1;
+    color: white; /* Cambia el color del texto si es necesario */
+    text-align: center;
+    padding: 500px;
+}
