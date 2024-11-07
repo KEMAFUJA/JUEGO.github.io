@@ -363,18 +363,61 @@ function showScene(sceneKey) {
     imageElement.src = scene.image;
 }
 
-// Función para que la máquina elija una opción
+// Función de evaluación para Minimax
+function evaluateScore(scene, machineChoice) {
+    // Aquí puedes definir la lógica para evaluar el puntaje de la máquina y el jugador
+    return machineChoice.value - playerPoints;
+}
+
+// Función de Minimax
+function minimax(sceneKey, depth, isMaximizingPlayer) {
+    const scene = scenes[sceneKey];
+    
+    // Caso base: si se llega a un nivel de profundidad o si no hay opciones
+    if (depth === 0 || scene.options.length === 0) {
+        return 0; // Aquí puede ser una función de evaluación si es necesario
+    }
+
+    let bestScore = isMaximizingPlayer ? -Infinity : Infinity;
+
+    // Recorrer todas las opciones posibles
+    for (let option of scene.options) {
+        // Recursión: llama a minimax para las siguientes jugadas
+        let score = evaluateScore(scene, option);  // Este sería el puntaje basado en el movimiento
+
+        // Aquí se hace la recursión para explorar más profundidades
+        if (isMaximizingPlayer) {
+            bestScore = Math.max(bestScore, score);
+        } else {
+            bestScore = Math.min(bestScore, score);
+        }
+    }
+
+    return bestScore;
+}
+
+// Función para que la máquina elija una opción usando Minimax
 function machineTurn(sceneKey) {
     const scene = scenes[sceneKey];
-    if (sceneKey !== "inicio" && sceneKey !== "mat" && sceneKey !== "prog" && sceneKey !== "finalmat") {
+
+    if (sceneKey !== "inicio" && sceneKey !== "mat" && sceneKey !== "prog" && sceneKey !== "finalmat" && sceneKey !== "finalprog") {
         // Aquí no entra si 'sceneKey' es igual a cualquiera de los valores especificados.
         if (scene.options.length > 0) {
-            // La máquina elige una opción al azar
-            const randomIndex = Math.floor(Math.random() * scene.options.length);
-            const machineChoice = scene.options[randomIndex];
-            // Actualiza puntos de la máquina
-            machinePoints += machineChoice.value;
-            alert(`La máquina eligió: ${machineChoice.text}`);
+            let bestOption = null;
+            let bestScore = -Infinity;
+
+            // Evaluar todas las opciones posibles usando Minimax
+            for (let option of scene.options) {
+                let score = minimax(sceneKey, 3, false); // Llamada a Minimax con un límite de profundidad (ej. 3)
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestOption = option;
+                }
+            }
+
+            // Actualiza puntos de la máquina con la mejor opción
+            machinePoints += bestOption.value;
+            alert(`La máquina eligió: ${bestOption.text}`);
         }
     }
 }
